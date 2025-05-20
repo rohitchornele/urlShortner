@@ -1,6 +1,6 @@
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
-import { getOriginalUrl, urlShort } from "./controllers/urlController.js";
+import { getOriginalUrl, urlShort } from "../controllers/urlController.js";
 import dotenv from 'dotenv';
 
 dotenv.config();
