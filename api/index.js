@@ -17,12 +17,13 @@ const __dirname = path.dirname(__filename);
 app.use(express.urlencoded({ extended: true }));
 const MONGO_URL = process.env.MONGO_URL;
 
-mongoose
-  .connect(MONGO_URL, {
-    dbName: "URL_SHORTNER_DB",
-  })
-  .then(() => console.log("Mongodb Connected"))
-  .catch((error) => console.log(error));
+try {
+  await mongoose.connect(MONGO_URL, { dbName: "URL_SHORTNER_DB" });
+  console.log("MongoDB Connected");
+} catch (error) {
+  console.error("MongoDB connection error:", error);
+  throw error;  // re-throw to fail deployment if DB not connected
+}
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
