@@ -22,15 +22,22 @@ const port = process.env.PORT;
 app.use(express.urlencoded({extended: true}));
 const MONGO_URL = process.env.MONGO_URL;
 
-try {
-  mongoose
-  .connect(MONGO_URL, {
-    dbName: "URL_SHORTNER_DB",
-  })
-  .then(() => console.log("Mongodb Connected"))
-} catch (error) {
-  (error) => console.log(error)
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected) return;
+
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      dbName: "URL_SHORTNER_DB",
+    });
+    isConnected = true;
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error);
+  }
 }
+   connectDB();
 
 app.get("/", (req, res) => {
   res.render("index", { shortUrl: null });
@@ -49,4 +56,4 @@ app.get('/:shortCode', getOriginalUrl)
 
 export default serverless(app);
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+// app.listen(port, () => console.log(`Server is running on port ${port}`));
