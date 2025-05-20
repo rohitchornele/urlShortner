@@ -4,7 +4,6 @@ import { getOriginalUrl, urlShort } from "../controllers/urlController.js";
 import dotenv from 'dotenv';
 import serverless from 'serverless-http';
 import { fileURLToPath } from 'url';
-import serverless from 'serverless-http';
 import path from "path";
 
 
