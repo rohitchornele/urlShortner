@@ -3,10 +3,21 @@ import mongoose from "mongoose";
 import { getOriginalUrl, urlShort } from "../controllers/urlController.js";
 import dotenv from 'dotenv';
 import serverless from 'serverless-http';
+import { fileURLToPath } from 'url';
+import serverless from 'serverless-http';
+import path from "path";
+
 
 dotenv.config();
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 const port = process.env.PORT;
 
 app.use(express.urlencoded({extended: true}));
