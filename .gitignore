@@ -63,3 +63,4 @@ pids
 
 # Docker files
 docker-compose.override.yml
+.vercel
