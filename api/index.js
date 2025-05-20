@@ -17,13 +17,27 @@ const __dirname = path.dirname(__filename);
 app.use(express.urlencoded({ extended: true }));
 const MONGO_URL = process.env.MONGO_URL;
 
-try {
-  await mongoose.connect(MONGO_URL, { dbName: "URL_SHORTNER_DB" });
-  console.log("MongoDB Connected");
-} catch (error) {
-  console.error("MongoDB connection error:", error);
-  throw error;  // re-throw to fail deployment if DB not connected
+let isConnected = false;
+
+async function connectToDatabase() {
+  if (isConnected) return;
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      dbName: "URL_SHORTNER_DB",
+    });
+    isConnected = true;
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw error;
+  }
 }
+
+app.use(async (req, res, next) => {
+  await connectToDatabase();
+  next();
+});
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
