@@ -54,6 +54,6 @@ app.get("/shorten", (req, res) => {
 //redirect to original url using short url\
 app.get('/:shortCode', getOriginalUrl)
 
-export default serverless(app);
-
+const handler = serverless(app);
+export default handler;
 // app.listen(port, () => console.log(`Server is running on port ${port}`));
