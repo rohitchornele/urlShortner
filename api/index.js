@@ -33,7 +33,7 @@ try {
 }
 
 app.get("/", (req, res) => {
-  res.render("index.ejs", { shortUrl: null });
+  res.render("index", { shortUrl: null });
 });
 
 //handle URL Submission
@@ -49,4 +49,4 @@ app.get('/:shortCode', getOriginalUrl)
 
 export default serverless(app);
 
-// app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => console.log(`Server is running on port ${port}`));
