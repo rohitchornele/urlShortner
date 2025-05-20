@@ -26,9 +26,9 @@ async function connectToDatabase() {
       dbName: "URL_SHORTNER_DB",
     });
     isConnected = true;
-    console.log("MongoDB Connected");
+    // console.log("MongoDB Connected");
   } catch (error) {
-    console.error("MongoDB connection error:", error);
+    // console.error("MongoDB connection error:", error);
     throw error;
   }
 }
