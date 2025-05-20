@@ -22,12 +22,15 @@ const port = process.env.PORT;
 app.use(express.urlencoded({extended: true}));
 const MONGO_URL = process.env.MONGO_URL;
 
-mongoose
+try {
+  mongoose
   .connect(MONGO_URL, {
     dbName: "URL_SHORTNER_DB",
   })
   .then(() => console.log("Mongodb Connected"))
-  .catch((error) => console.log(error));
+} catch (error) {
+  (error) => console.log(error)
+}
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { shortUrl: null });
