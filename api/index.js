@@ -45,4 +45,4 @@ app.get("/:shortCode", getOriginalUrl);
 
 // app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-export const handler = serverless(app);
+export default serverless(app);
