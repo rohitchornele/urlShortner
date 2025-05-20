@@ -1,6 +1,6 @@
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
-import { getOriginalUrl, urlShort } from "./controllers/urlController.js";
+import { getOriginalUrl, urlShort } from "../controllers/urlController.js";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -45,4 +45,4 @@ app.get("/:shortCode", getOriginalUrl);
 
 // app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-// export const handler = serverless(app);
+export const handler = serverless(app);
