@@ -2,7 +2,7 @@ import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import { getOriginalUrl, urlShort } from "../controllers/urlController.js";
 import dotenv from 'dotenv';
-// import serverless from 'serverless-http';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
